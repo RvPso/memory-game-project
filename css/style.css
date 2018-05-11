@@ -1,0 +1,25 @@
+.table {
+    background-color: chocolate;
+    display: flex;
+    width: 530px;
+    flex-wrap:wrap;
+    
+}
+
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9 {
+    background-color: red;
+    width: 150px;
+    height: 150px;
+    border: solid black;
+    margin: 10px;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    transform: rotateY(0deg);
+}
+
+
+
+@keyframes example {
+    from {background-color: red; transform: rotateY(0deg);}
+    to {background-color: yellow; transform: rotateY(180deg);}
+}
