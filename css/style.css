@@ -1,20 +1,77 @@
+
+body {
+	width: 100wh;
+	height: 150vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+
+
 .table {
-    background-color: chocolate;
+    position: absolute;
+    bottom: 100px;
+    left: 700px;
     display: flex;
-    width: 530px;
+    width: 1000px;
     flex-wrap:wrap;
     
 }
 
 .box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9 {
     background-color: red;
-    width: 150px;
-    height: 150px;
-    border: solid black;
+    width: 200px;
+    height: 200px;
+    border: solid white;
     margin: 10px;
     animation-fill-mode: forwards;
     animation-duration: 0.5s;
     transform: rotateY(0deg);
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+    
+    
 }
 
 
@@ -23,3 +80,15 @@
     from {background-color: red; transform: rotateY(0deg);}
     to {background-color: yellow; transform: rotateY(180deg);}
 }
+
+h1 {
+    margin-top: 60px;
+    margin-left: 75px;
+    font-size: 60px;
+}
+    
+  
+
+
+
+
