@@ -1,23 +1,11 @@
-//Declaring cards
-var card1 = '<div class="box1"> <h1>1</h1> </div>';
-var card2 = '<div class="box2"> <h1>2</h1> </div>';
-var card3 = '<div class="box3"> <h1>3</h1> </div>';
-var card4 = '<div class="box4"> <h1>4</h1> </div>';
-var card5 = '<div class="box5"> <h1>5</h1> </div>';
-var card6 = '<div class="box6"> <h1>6</h1> </div>';
-var card7 = '<div class="box7"> <h1>7</h1> </div>';
-var card8 = '<div class="box8"> <h1>8</h1> </div>';
+// Declaring variables
+var picked;
+var picked2;
+var cards = [];
+// Symbols
+var img = ['<img src="img/1 - Copy.png" >', '<img src="img/1.png">', '<img src="img/2 - Copy.png">', '<img src="img/2.png">', '<img src="img/3 - Copy.png">', '<img src="img/3.png">', '<img src="img/4 - Copy.png">', '<img src="img/4.png">', '<img src="img/5 - Copy.png">', '<img src="img/5.png">', '<img src="img/6 - Copy.png">', '<img src="img/6.png">'];
 
-var card1i = '<div class="box1i"> <h1>1</h1> </div>';
-var card2i = '<div class="box2i"> <h1>2</h1> </div>';
-var card3i = '<div class="box3i"> <h1>3</h1> </div>';
-var card4i = '<div class="box4i"> <h1>4</h1> </div>';
-var card5i = '<div class="box5i"> <h1>5</h1> </div>';
-var card6i = '<div class="box6i"> <h1>6</h1> </div>';
-var card7i = '<div class="box7i"> <h1>7</h1> </div>';
-var card8i = '<div class="box8i"> <h1>8</h1> </div>';
-var cards = [card1, card2, card3, card4, card5, card6, card7, card8];
-var cardsi = [card1i,card2i,card3i,card4i,card5i,card6i,card7i,card8i];
+
 
 // Cards shuffling
 function shuffle(array) {
@@ -39,82 +27,89 @@ function shuffle(array) {
     return array;
 }
 
-// Appending cards with it's pair in the table
+// Appending cards in the table
 function addCards(a) {
-    if (a >= 8 && a < 12) {
-        cards.splice(0, 4);
-        cardsi.splice(0, 2);
-    } else if (a >= 12) {
-        cards.splice(0, 2);
-        cardsi.splice(0, 2);
+    shuffle(img);
+      for (var i=0;i<img.length;i++){
+    cards.push(img[i].substring(14,15));
     }
-    
-    shuffle(cards);
     for (var i= 0; i < cards.length; i++) {
-        $('.table').append(cards[i]);  
+        $('.table').append('<div class="box' + cards[i] + '"> <div class="front" ><img src=\"img/10.png\"></div> <div class="back">' + img[i] +'</div> </div>');  
     }
-    shuffle(cardsi);
-    for ( i= 0; i < cards.length; i++) {
-        $('.table').append(cardsi[i]); 
-    }
+
     
   
 }
+function flippingCards() {
+    console.log('flippingCards() works')
+    $( ".table" ).on( "click", "div", function( event ) {
+    event.preventDefault();
+    $( this ).css('animation-name', 'flip');
+    picked = this;
+    });
+}
+/*function checkingCards() {
+      if (picked == 0) {
+    console.log('picked is undefined about to pick');
+    for (var i = 0; i < img.length; i++) {
+    if ( $('.box' + img[i].substring(14,15)).css('animation-name') == 'flip') {
+    console.log('works');
+    picked = img[i];
+    delete cards[i];
+    }
+    }       
+    }else if (picked2 == 0) {
+    console.log('picked is defined about to pick2')
+        for (var i = 0; i < img.length; i++) {
+    if ( $('.box' + img[i].substring(14,15)).css('animation-name') == 'flip') {
+    console.log('works');
+    picked2 = "<img src=\"img/" + cards[i] + " - Copy.png\">";
+    picked2i = "<img src=\"img/" + cards[i] + ".png\">"
+    if (picked == picked2 || picked == picked2i) {
+    console.log('match');
+    } else {
+    console.log('unmatch');
+    cards.push[picked];
+    }
+    }
+    }
 
+}  
+}*/
+function matching() {
+    console.log('matching() works');
+    $( ".table" ).on( "click", "div", function( event ) {
+    event.preventDefault();
+    $( this ).css('animation-name', 'flip');
+    picked2 = this;
+    if  (picked == picked2) {
+        console.log('match');
+    } else {
+        console.log('unmatched');
+    }
+});
+}
+                     
 
 $(document).ready(function () {
-    // Picking cards
-     $(".table").on("click", ".box1", function() {
+    
+    
+    $('.box1').click(function(){
         $('.box1').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box1i', function() {
-        $('.box1i').css('animation-name', 'flip'); 
-     });
-     $(".table").on("click", ".box2", function() {
-        $('.box2').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box2i', function() {
-        $('.box2i').css('animation-name', 'flip'); 
-     });    
-     $(".table").on("click", ".box3", function() {
-        $('.box3').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box3i', function() {
-        $('.box3i').css('animation-name', 'flip'); 
-     }); 
-     $('.table').on('click', '.box4', function() {
-        $('.box4').css('animation-name', 'flip'); 
-     });
-     $(".table").on("click", ".box4i", function() {
-        $('.box4i').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box5', function() {
-        $('.box5').css('animation-name', 'flip'); 
-     });   
-     $(".table").on("click", ".box5i", function() {
-        $('.box5i').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box6', function() {
-        $('.box6').css('animation-name', 'flip'); 
-     });   
-     $(".table").on("click", ".box6i", function() {
-        $('.box6i').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box7', function() {
-        $('.box7').css('animation-name', 'flip'); 
-     });   
-     $(".table").on("click", ".box7i", function() {
-        $('.box7i').css('animation-name', 'flip');
-     }); 
-     $('.table').on('click', '.box8', function() {
-        $('.box8').css('animation-name', 'flip'); 
-     });   
-     $('.table').on('click', '.box8i', function() {
-        $('.box8i').css('animation-name', 'flip'); 
-     });     
+    
+    });
     // Add cards
-    window.setTimeout(addCards(12), 100);
+   addCards(12);
+     console.log($('.table').css('width'));
+    // Picking cards
+    if (picked == undefined) {
+        flippingCards();
+    } else if (picked2 == undefined) {
+        matching();
+    }
+    
 });
+
 
 
 
