@@ -4,12 +4,10 @@ var picked2= [];
 var cards = [];
 var moves = 0;
 var timer = 0;
+var score = 0;
 // Symbols
 var img = [];
-for (i = 1; i <= 8; i++) {
-    img.push('<img src="img/' + i +' - Copy.png" >');
-    img.push('<img src="img/' + i +'.png">');
-}
+
 var matched = 0;
 var cardsOnTable;
 // Cards shuffling
@@ -37,10 +35,7 @@ function addCards(a) {
     if (a == 'easy') {
         img.splice(12);
     }
-    $('.table').children('div').remove();
-    for (var i=0;i<img.length;i++){
-    cards.splice(i);
-    }
+
     shuffle(img);
       for (var i=0;i<img.length;i++){
     cards.push(img[i].substring(14,15));
@@ -50,9 +45,7 @@ function addCards(a) {
         
     }
   cardsOnTable = img.length / 2;
-    if (cardsOnTable == matched) {
-    alert('won');
-}
+
 }
 function flippingCards() {
     console.log('flippingCards() works')
@@ -87,16 +80,38 @@ function flippingCards() {
             
         }
     }
+    if (cardsOnTable == matched) {
+        swal({
+        title:'Awesome!',
+        text:'You have finished the game with score: ' + score + ' and ' + moves + ' move in ' + timer + ' seconds',
+        icon: 'success',    
+         buttons: {
+    cancel: "Play again!",
+  },
+})
+.then((value) => {
+  switch (value) {
+
+    default:
+      startGame();
+  }
+});
+}
     });
 }                  
 
 
-
-
-
-
-$(document).ready(function () {    
-        swal({
+function startGame() {
+        $('.table').children('div').remove();
+    for (var i=0;i<img.length;i++){
+    cards.splice(i);
+    img.splice(i);
+    }
+    for (i = 1; i <= 8; i++) {
+    img.push('<img src="img/' + i +' - Copy.png" >');
+    img.push('<img src="img/' + i +'.png">');
+}
+    swal({
         title:'How to Play',
         text:'1 - Click over any two cards. \n 2 - If they match, they\'ll be keeped.\n 3 - If they don\'t match they\'ll flip over.\n4 - Remember what was on each card and where it was.\n 5 - The game is over when all cards have been matched.\n\nChoose the difficulty below:',
          buttons: {
@@ -114,7 +129,13 @@ $(document).ready(function () {
       addCards('easy');
   }
 });
-    
+}
+
+
+
+$(document).ready(function () {    
+
+    startGame()
     // Add cards
     
     console.log($('.table').css('width'));
