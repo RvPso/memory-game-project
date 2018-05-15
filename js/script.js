@@ -5,10 +5,13 @@ var cards = [];
 var moves = 0;
 var timer = 0;
 // Symbols
-var img = ['<img src="img/1 - Copy.png" >', '<img src="img/1.png">', '<img src="img/2 - Copy.png">', '<img src="img/2.png">', '<img src="img/3 - Copy.png">', '<img src="img/3.png">', '<img src="img/4 - Copy.png">', '<img src="img/4.png">', '<img src="img/5 - Copy.png">', '<img src="img/5.png">', '<img src="img/6 - Copy.png">', '<img src="img/6.png">'];
-
-
-
+var img = [];
+for (i = 1; i <= 8; i++) {
+    img.push('<img src="img/' + i +' - Copy.png" >');
+    img.push('<img src="img/' + i +'.png">');
+}
+var matched = 0;
+var cardsOnTable;
 // Cards shuffling
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -31,6 +34,13 @@ function shuffle(array) {
 
 // Appending cards in the table
 function addCards(a) {
+    if (a == 'easy') {
+        img.splice(12);
+    }
+    $('.table').children('div').remove();
+    for (var i=0;i<img.length;i++){
+    cards.splice(i);
+    }
     shuffle(img);
       for (var i=0;i<img.length;i++){
     cards.push(img[i].substring(14,15));
@@ -39,9 +49,10 @@ function addCards(a) {
         $('.table').append('<div class="box' + cards[i] + '"> <li class="front ' + cards[i] + ' " ><img src=\"img/10.png\"></li> <div class="back">' + img[i] +'</div> </div>');
         
     }
-
-    
-  
+  cardsOnTable = img.length / 2;
+    if (cardsOnTable == matched) {
+    alert('won');
+}
 }
 function flippingCards() {
     console.log('flippingCards() works')
@@ -57,6 +68,7 @@ function flippingCards() {
             $('header').append('<h2 class ="moves">moves: ' + moves + '</h2>');
         if (picked[0].substring(18, 19) == picked[1].substring(18, 19)) {
             console.log('match');
+            matched++
             picked.pop();
             picked.pop();
              picked2.pop();
@@ -83,8 +95,6 @@ function flippingCards() {
 
 
 
-
-
 $(document).ready(function () {    
         swal({
         title:'How to Play',
@@ -98,19 +108,19 @@ $(document).ready(function () {
   switch (value) {
  
     case "HARD":
-      swal("HARD");
+      addCards('hard');
       break;
- 
     default:
-      swal("EASY");
+      addCards('easy');
   }
 });
     
     // Add cards
-    addCards(12);
+    
     console.log($('.table').css('width'));
     // Picking cards
     flippingCards();
+
 
 });
 
