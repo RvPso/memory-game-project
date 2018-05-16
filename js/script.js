@@ -2,9 +2,11 @@
 var picked = [];
 var picked2= [];
 var cards = [];
-var moves = 0;
-var timer = 0;
+var moves;
+var timer;
+var startTimer;
 var score = 0;
+var scoreSystem = false;
 // Symbols
 var img = [];
 
@@ -34,6 +36,8 @@ function shuffle(array) {
 function addCards(a) {
     if (a == 'easy') {
         img.splice(12);
+    } else {
+        scoreSystem = true;
     }
 
     shuffle(img);
@@ -47,40 +51,76 @@ function addCards(a) {
   cardsOnTable = img.length / 2;
 
 }
-function flippingCards() {
-    console.log('flippingCards() works')
+function coreGame() {
+    console.log('coreGame() works')
     $( ".table" ).on( "click", "div", function( event ) {
     event.preventDefault();
     $( this ).css('animation-name', 'flip');
+            
         console.log(this)
     picked2.push($(this));    
     picked.push(this.innerHTML);
+        if (scoreSystem == true) {
+                    if (moves < 10) {
+    $('.score').remove();
+    for (i = 0; i < 3; i++) {
+$('body').append('<img class = "score" src="img/star.png">');  
+        score = 3;
+}
+} else if (moves > 10 && moves < 20) {
+    $('.score').remove();
+    for (i = 0; i < 2; i++) {
+$('body').append('<img class = "score" src="img/star.png">');
+        score = 2;
+    }
+}  else if (moves > 20) {
+    $('.score').remove();
+    for (i = 0; i < 1; i++) {
+$('body').append('<img class = "score" src="img/star.png">');
+        score = 1;
+    }
+}
+        }
+
+    if (picked2.length > 2) {
+        picked2[2].css('animation-name', 'unflip');
+        picked.pop();
+        picked2.pop();
+        
+    }    
     if (picked.length == 2) {
                 moves++;
-            $('header').children('h2').remove();
-            $('header').append('<h2 class ="moves">moves: ' + moves + '</h2>');
-        if (picked[0].substring(18, 19) == picked[1].substring(18, 19)) {
+            $('.moves').remove();
+            $('header').append('<div style="position: relative; width: 10; height: 0"><h2 class ="moves">moves: ' + moves + '</h2></div>');
+            
+            
+        if (picked[0] == picked[1]){
+            console.log('identical');
+            picked = [];
+            picked2 = [];
+        } else if (picked[0].substring(18, 19) == picked[1].substring(18, 19)) {
             console.log('match');
+/*            setTimeout(function() {
+            picked2[0].hide();
+            picked2[1].hide();
+            }, 500);*/
             matched++
-            picked.pop();
-            picked.pop();
-             picked2.pop();
-            picked2.pop();
+            picked = [];
+            picked2 = [];
         } else {
           console.log('unmatch');
             setTimeout(function() {
               picked2[0].css('animation-name', 'unflip');
             picked2[1].css('animation-name', 'unflip');
-            picked2.pop();
-            picked2.pop();
+            picked2 = [];
             }, 500);
-            picked.pop();
-            picked.pop();
+            picked = [];
 
             
         }
     }
     if (cardsOnTable == matched) {
+        startTimer = false;
         swal({
         title:'Awesome!',
         text:'You have finished the game with score: ' + score + ' and ' + moves + ' move in ' + timer + ' seconds',
@@ -94,6 +134,7 @@ function flippingCards() {
 
     default:
       startGame();
+      
   }
 });
 }
@@ -102,7 +143,11 @@ function flippingCards() {
 
 
 function startGame() {
-        $('.table').children('div').remove();
+    timer = 0;
+    moves = 0;
+    matched = 0;
+    $('header').children('div').remove();
+    $('.table').children('div').remove();
     for (var i=0;i<img.length;i++){
     cards.splice(i);
     img.splice(i);
@@ -114,19 +159,22 @@ function startGame() {
     swal({
         title:'How to Play',
         text:'1 - Click over any two cards. \n 2 - If they match, they\'ll be keeped.\n 3 - If they don\'t match they\'ll flip over.\n4 - Remember what was on each card and where it was.\n 5 - The game is over when all cards have been matched.\n\nChoose the difficulty below:',
+        closeOnClickOutside: false,
          buttons: {
     cancel: "EASY",
-    HARD: true,
+    CHALLENGING: true,
   },
 })
 .then((value) => {
   switch (value) {
  
-    case "HARD":
+    case "CHALLENGING":
       addCards('hard');
+      startTimer = true;
       break;
     default:
       addCards('easy');
+      startTimer = true;
   }
 });
 }
@@ -135,13 +183,21 @@ function startGame() {
 
 $(document).ready(function () {    
 
-    startGame()
+    startGame();
     // Add cards
     
     console.log($('.table').css('width'));
     // Picking cards
-    flippingCards();
-
+    coreGame();
+    // Timer
+    
+    setInterval(function() {
+        if (startTimer == true) {
+       $('.timer').remove();
+        $('header').append('<div style="position: relative; width: 10; height: 0"><h2 class ="timer">timer: ' + timer + '</h2></div>');
+        timer++ 
+        }
+    }, 1000);
 
 });
 
@@ -150,24 +206,4 @@ $(document).ready(function () {
 
 
 
-/*
-$(document).ready(function(){
- var done = false;
-    box1 = document.querySelector('.box1');
-    var cards = [box1,'box2'];
-    console.log(cards[0]);
-    console.log($(box1).css('transform'));
-    cards[0].addEventListener('click',function(){ cards[0].style.animationName = 'flip'; done = true; });
-    
-    if (done === true) {
-      console.log('works');
-}  
-    
-});
 
-
-function cardCheck() {
-    for (i = 0; i < cards.length; i++) {
-        if (cards[i].css('transform') == 'matrix()' )
-    }
-}*/

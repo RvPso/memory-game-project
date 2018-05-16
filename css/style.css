@@ -52,13 +52,13 @@ body {
     margin-top:80px;
     margin-left: 390px;
     display: flex;
-    width: 970px;
+    width: 800px;
     flex-wrap:wrap;
 }
 .box1,.box2, .box3, .box4, .box5, .box6, .box7, .box7, .box8, .box9{
     
-    width: 170px;
-    height: 170px;
+    width: 150px;
+    height: 150px;
     margin: 10px;
     
     border: solid white;
@@ -123,8 +123,8 @@ p {
 img {
     padding: 18px;
     margin-left: 6px;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
 
 li {
@@ -134,12 +134,37 @@ li {
 }
 
 .moves {
-    position: absolute;
-    top:115px;
-    right: 410px;
+    position:absolute;
+    bottom: -180px;
+    margin-left: 1100px;
+    
     font-size: 40px;
+    font-family: 'Sigmar One', cursive;
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75px 0.966667px 0px, rgb(0, 0, 0) 1.08333px 1.68333px 0px, rgb(0, 0, 0) 0.133333px 2px 0px, rgb(0, 0, 0) -0.833333px 1.81667px 0px, rgb(0, 0, 0) -1.6px 1.2px 0px, rgb(0, 0, 0) -1.98333px 0.283333px 0px, rgb(0, 0, 0) -1.86667px -0.7px 0px, rgb(0, 0, 0) -1.3px -1.51667px 0px, rgb(0, 0, 0) -0.416667px -1.95px 0px, rgb(0, 0, 0) 0.566667px -1.91667px 0px, rgb(0, 0, 0) 1.41667px -1.41667px 0px, rgb(0, 0, 0) 1.91667px -0.566667px 0px;
     
 }
-.swal2-overlay {
-  background-color: white;
+.timer {
+    position:absolute;
+    bottom: -140px;
+    margin-left: 1100px;
+    font-size: 40px;
+    font-family: 'Sigmar One', cursive;
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75px 0.966667px 0px, rgb(0, 0, 0) 1.08333px 1.68333px 0px, rgb(0, 0, 0) 0.133333px 2px 0px, rgb(0, 0, 0) -0.833333px 1.81667px 0px, rgb(0, 0, 0) -1.6px 1.2px 0px, rgb(0, 0, 0) -1.98333px 0.283333px 0px, rgb(0, 0, 0) -1.86667px -0.7px 0px, rgb(0, 0, 0) -1.3px -1.51667px 0px, rgb(0, 0, 0) -0.416667px -1.95px 0px, rgb(0, 0, 0) 0.566667px -1.91667px 0px, rgb(0, 0, 0) 1.41667px -1.41667px 0px, rgb(0, 0, 0) 1.91667px -0.566667px 0px;
+    
+}
+.score {
+    position:relative;
+    top: -800px;
+    left: 960px;
+    margin-left: -80px;
+    width: 100px;
+    height:auto;
+line-height: 0px;
+font-size: 0px;
+    
+}
+.title {
+    font-family: 'Sigmar One', cursive;
+    margin-left: 370px;
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75px 0.966667px 0px, rgb(0, 0, 0) 1.08333px 1.68333px 0px, rgb(0, 0, 0) 0.133333px 2px 0px, rgb(0, 0, 0) -0.833333px 1.81667px 0px, rgb(0, 0, 0) -1.6px 1.2px 0px, rgb(0, 0, 0) -1.98333px 0.283333px 0px, rgb(0, 0, 0) -1.86667px -0.7px 0px, rgb(0, 0, 0) -1.3px -1.51667px 0px, rgb(0, 0, 0) -0.416667px -1.95px 0px, rgb(0, 0, 0) 0.566667px -1.91667px 0px, rgb(0, 0, 0) 1.41667px -1.41667px 0px, rgb(0, 0, 0) 1.91667px -0.566667px 0px;
 }
