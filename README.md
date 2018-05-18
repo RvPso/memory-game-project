@@ -6,8 +6,9 @@ Memory Game project made with ♥ @ Udacity
 3 - If the two cards match then they keep flipped.<br />
 4 - If the two cards do not match then they will flip over.<br />
 5 - The game is won when all the appended cards are matched.<br />
-6 - There is a timer and move and score system.<br />
+6 - There is a timer and move and score rating.<br />
 7 - Score reduces based on how many time the player's moves.<br />
+8 - Score rating only works in "Challenging" difficulty.
 # Project's interface
 The cards (without the images) are made with bare CSS3.<br />
 Credits to Good Ware for the icons. (https://www.flaticon.com/packs/spring-36)<br />
